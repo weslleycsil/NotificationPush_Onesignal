@@ -12,10 +12,11 @@ class NP_Push {
         }
     }
 
-    public function __construct3($tituloMsg, $mensagem, $idUsuario) {
+    public function __construct4($tituloMsg, $mensagem, $idUsuario, $dateHour) {
         $this->titulo = $tituloMsg;
         $this->msg = $mensagem;
         $this->pushID = $this->getPushID($idUsuario);
+        $this->dataHora = $dateHour; 
     }
 
     public function __construct2($tituloMsg, $mensagem) {
@@ -47,6 +48,8 @@ class NP_Push {
         echo $this->msg;
         echo '<br>';
         echo $this->pushID;
+        echo '<br>';
+        echo $this->dataHora;
         echo '<br>';
     }
 
