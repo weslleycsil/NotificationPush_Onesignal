@@ -2,7 +2,7 @@
 
 class NP_Push {
 
-    private $titulo, $msg, $pushID;
+    private $titulo, $msg, $pushID, $dataHora;
 
     public function __construct() {
         $a = func_get_args(); 
@@ -12,20 +12,30 @@ class NP_Push {
         }
     }
 
-    public function __construct3($tituloMsg, $mensagem, $idUsuario) {
+    public function __construct4($tituloMsg, $mensagem, $idUsuario, $dateHour) {
         $this->titulo = $tituloMsg;
         $this->msg = $mensagem;
         $this->pushID = $this->getPushID($idUsuario);
+        $this->dataHora = $this->formateDate($dateHour); 
     }
 
-    public function __construct2($tituloMsg, $mensagem) {
+    public function __construct3($tituloMsg, $mensagem, $dateHour) {
         $this->titulo = $tituloMsg;
         $this->msg = $mensagem;
         $this->pushID = null;
+        $this->dataHora = $this->formateDate($dateHour); 
     }
 
     private function getPushID($id){
         return get_field( "pushID", 'user_'.$id );
+    }
+
+    private function formateDate($date){
+        if ($date == null) {
+            return null;
+        } else {
+        return str_replace ('T', ' ', $date).':00 UTC-0300';
+        }
     }
 
     public function sendPush(){
@@ -48,6 +58,8 @@ class NP_Push {
         echo '<br>';
         echo $this->pushID;
         echo '<br>';
+        echo $this->dataHora;
+        echo '<br>';
     }
 
     public function getTitulo(){
@@ -59,5 +71,7 @@ class NP_Push {
     public function getDeviceID(){
         return $this->pushID;
     }
-
+    public function getDate(){
+        return $this->dataHora;
+    }
 }

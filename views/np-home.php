@@ -3,7 +3,7 @@
     if(!$this->configComplet()){
 ?>
     <div class="wrap">
-        <h1 class="wp-heading-inline">Push Notificações App Alcance</h1>
+        <h1 class="wp-heading-inline">Push Notificações App Alcance!!</h1>
         <hr class="wp-header-end">
         <h3>Finalize a Configuração do Plugin para poder Continuar</h3>
     </div>
@@ -17,8 +17,9 @@
         if(isset($_POST['push_title'])) // Se existir o array post, pq ele não retorna undefined index.
         {
 
-            $push = new NP_Push($_POST['push_title'],$_POST['push_msg']);
-            $reqMsg = $push->sendPush();
+            $push = new NP_Push($_POST['push_title'],$_POST['push_msg'],$_POST['push_date']);
+            //$req = $push->sendPush();
+            $push->print();
             if(isset($reqMsg->errors)){
                 $reqMsg = null;
             }
@@ -66,6 +67,10 @@
                             <form name="post" action="" method="post" id="quick-press" class="initial-form">
                                 <div class="input-text-wrap" id="title-wrap">
                                     <input type="text" id="push_title" class="regular-text" name="push_title" placeholder="Título" autocomplete="off" required>
+                                </div>
+
+                                <div class="input-text-wrap" id="push_date"> <br>
+                                    <input type="datetime-local" id="push_date" class="datetime" name="push_date">
                                 </div>
 
                                 <div class="textarea-wrap" id="description-wrap">
