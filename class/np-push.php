@@ -19,10 +19,11 @@ class NP_Push {
         $this->dataHora = $this->formateDate($dateHour); 
     }
 
-    public function __construct2($tituloMsg, $mensagem) {
+    public function __construct3($tituloMsg, $mensagem, $dateHour) {
         $this->titulo = $tituloMsg;
         $this->msg = $mensagem;
         $this->pushID = null;
+        $this->dataHora = $this->formateDate($dateHour); 
     }
 
     private function getPushID($id){
