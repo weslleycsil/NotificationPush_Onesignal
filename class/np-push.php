@@ -2,7 +2,7 @@
 
 class NP_Push {
 
-    private $titulo, $msg, $pushID;
+    private $titulo, $msg, $pushID, $dataHora;
 
     public function __construct() {
         $a = func_get_args(); 
@@ -16,7 +16,7 @@ class NP_Push {
         $this->titulo = $tituloMsg;
         $this->msg = $mensagem;
         $this->pushID = $this->getPushID($idUsuario);
-        $this->dataHora = $dateHour; 
+        $this->dataHora = $this->formateDate($dateHour); 
     }
 
     public function __construct2($tituloMsg, $mensagem) {
@@ -27,6 +27,14 @@ class NP_Push {
 
     private function getPushID($id){
         return get_field( "pushID", 'user_'.$id );
+    }
+
+    private function formateDate($date){
+        if ($date == null) {
+            return null;
+        } else {
+        return str_replace ('T', ' ', $date).':00 UTC-0300';
+        }
     }
 
     public function sendPush(){
@@ -62,5 +70,7 @@ class NP_Push {
     public function getDeviceID(){
         return $this->pushID;
     }
-
+    public function getDate(){
+        return $this->dataHora;
+    }
 }

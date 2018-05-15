@@ -24,7 +24,8 @@ class NP_Onesignal {
 		$fields = array(
 			'app_id' => $this->AppId,
 			'included_segments' => array('All'),
-			'data' => array("foo" => "bar"),
+            'data' => array("foo" => "bar"),
+            'send_after'=> $push->getDate(),
             'contents' => $content,
             'headings' => $title
         );
@@ -53,7 +54,8 @@ class NP_Onesignal {
 		$fields = array(
 			'app_id' => $this->AppId,
 			'include_player_ids' => array($push->getDeviceID()),
-			'data' => array("foo" => "bar"),
+            'data' => array("foo" => "bar"),
+            'send_after'=> $push->getDate(),
 			'contents' => $content,
             'headings' => $title
         );

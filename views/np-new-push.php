@@ -14,8 +14,8 @@
         {
 
             $push = new NP_Push($_POST['push_title'],$_POST['push_msg'],$_POST['push_user'],$_POST['push_date']);
-            $req = $push->sendPush();
-            //$push->print();
+            //$req = $push->sendPush();
+            $push->print();
             if(isset($req->errors)){
                 $req = null;
             }
